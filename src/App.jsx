@@ -38,8 +38,8 @@ const App = () => {
     }
   }
 
-  const handleEnterSearch=(e)=>{
-    if(e.key=="Enter"){
+  const handleEnterSearch = (e) => {
+    if (e.key == "Enter") {
       handleSearch()
     }
   }
@@ -61,54 +61,54 @@ const App = () => {
       {
         loading ? <div className="loader"></div> :
           <>
-           <div className='flex flex-col sm:flex-row w-full justify-center items-center pt-3 gap-3'>
-  <input
-    className='w-full sm:w-[45%] md:w-[40%] lg:w-[35%] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
-    onKeyDown={handleEnterSearch}
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    placeholder='Search...'
-  />
-  
-  <select
-    className='w-full sm:w-[30%] md:w-[25%] lg:w-[20%] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
-    onChange={(e) => handleVale(e.target.value)}
-  >
-    <option value="All">All</option>
-    {model.map((item, index) => (
-      <option key={index} value={item}>{item}</option>
-    ))}
-  </select>
+            <div className='flex flex-col sm:flex-row w-full justify-center items-center px-6  pt-3 gap-3'>
+              <input
+                className='w-full sm:w-[45%] md:w-[40%] lg:w-[35%] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                onKeyDown={handleEnterSearch}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder='Search...'
+              />
 
-  <button
-    className='w-full sm:w-[20%] md:w-[15%] lg:w-[12%] px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
-    onClick={handleSearch}
-  >
-    Search
-  </button>
-</div>
+              <select
+                className='w-full sm:w-[30%] md:w-[25%] lg:w-[20%] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                onChange={(e) => handleVale(e.target.value)}
+              >
+                <option value="All">All</option>
+                {model.map((item, index) => (
+                  <option key={index} value={item}>{item}</option>
+                ))}
+              </select>
+
+              <button
+                className='w-full sm:w-[20%] md:w-[15%] lg:w-[12%] px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
 
 
             {
               found ? <p className='w-full flex justify-center items-center mt-32 text-3xl font-bold'>data not found</p> :
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-              {filterProduct.map((item, index) => {
-                const { year, model, color } = item;
-                const imageUrl=modelImages[model]||'https://robbreport.com/wp-content/uploads/2024/07/mistral01.jpg?w=1000';
-                return (
-                  <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <img className='w-full h-52 object-cover' src={imageUrl} />
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold">{model}</h3>
-                      <div className="flex justify-between py-2">
-                      <p className="text-gray-600">Year: {year}</p>
-                      <p className="text-gray-600">Color: {color}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+                  {filterProduct.map((item, index) => {
+                    const { year, model, color } = item;
+                    const imageUrl = modelImages[model] || 'https://robbreport.com/wp-content/uploads/2024/07/mistral01.jpg?w=1000';
+                    return (
+                      <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <img className='w-full h-52 object-cover' src={imageUrl} />
+                        <div className="p-4">
+                          <h3 className="text-xl font-semibold">{model}</h3>
+                          <div className="flex justify-between py-2">
+                            <p className="text-gray-600">Year: {year}</p>
+                            <p className="text-gray-600">Color: {color}</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                    );
+                  })}
+                </div>
             }
 
           </>
